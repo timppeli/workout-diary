@@ -8,13 +8,20 @@ import WorkoutHistory from './screens/WorkoutHistory';
 import Settings from './screens/Settings';
 import Styles from './styles/Styles';
 import { WorkoutContext } from './contexts/Contexts';
+import { useState } from 'react';
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
 
+  const [workouts, setWorkouts] = useState([]);
+
+  console.log(workouts);
+
   return (
+    <WorkoutContext.Provider value={{ workouts, setWorkouts }}>
     <Navigation />
+    </WorkoutContext.Provider>
   );
 
   function Navigation() {
