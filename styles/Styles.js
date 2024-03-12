@@ -11,14 +11,15 @@ export default StyleSheet.create({
   input: {
     padding: 10,
     marginTop: 10,
-    marginBottom: 10,
+    marginBottom: 20,
     borderWidth: 1,
     borderColor: '#666',
     backgroundColor: "#fff"
   },
   label: {
     fontSize: 18,
-    marginBottom: 10
+    marginBottom: 10,
+    marginTop: 10
   },
   option: {
     color: '#111'
@@ -43,4 +44,7 @@ export default StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-evenly"
   },
+  buttonstyle: {
+    backgroundColor: "red"
+  }
 });
