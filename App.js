@@ -7,38 +7,31 @@ import AddWorkout from './screens/AddWorkout';
 import WorkoutHistory from './screens/WorkoutHistory';
 import Settings from './screens/Settings';
 import Styles from './styles/Styles';
+import { WorkoutContext } from './contexts/Contexts';
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
+
   return (
-    <NavigationContainer>
-
-      <Tab.Navigator initialRouteName='history'>
-
-        <Tab.Screen name="add" options={{title:"Add Workout", tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="plus-box" color={color} size={size} />
-          )}} component={AddWorkout} style={Styles.test} />
-
-        <Tab.Screen name="history" options={{title:"Workout History", tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="history" color={color} size={size} />
-          )}} component={WorkoutHistory} />
-
-        <Tab.Screen name="settings" options={{title:"Settings", tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="cogs" color={color} size={size} />
-          )}} component={Settings} />
-
-      </Tab.Navigator>
-
-    </NavigationContainer>
+    <Navigation />
   );
-}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  function Navigation() {
+    return (
+      <NavigationContainer>
+        <Tab.Navigator initialRouteName='history'>
+          <Tab.Screen name="add" options={{title:"Add Workout", tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons name="plus-box" color={color} size={size} />
+            )}} component={AddWorkout} style={Styles.test} />
+          <Tab.Screen name="history" options={{title:"Workout History", tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons name="history" color={color} size={size} />
+            )}} component={WorkoutHistory} />
+          <Tab.Screen name="settings" options={{title:"Settings", tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons name="cogs" color={color} size={size} />
+            )}} component={Settings} />
+        </Tab.Navigator>
+      </NavigationContainer>
+    );
+  }
+}

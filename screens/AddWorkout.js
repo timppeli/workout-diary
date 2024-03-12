@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { View, Text, TextInput, Pressable, Button } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Styles from '../styles/Styles';
+import { WorkoutContext } from '../contexts/Contexts';
 
 const AddWorkout = () => {
   const workoutTypes = [
