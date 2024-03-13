@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { View, Text, TextInput, Pressable, Button } from 'react-native';
+import { View, Text, TextInput, Pressable, Button, Alert } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Styles from '../styles/Styles';
 import { WorkoutContext } from '../contexts/Contexts';
@@ -15,27 +15,12 @@ export default function AddWorkout() {
   const [distance, setDistance] = useState(0);
   const [duration, setDuration] = useState(0);
 
-  const {setWorkouts } = useContext(WorkoutContext);
+  const { setWorkouts } = useContext(WorkoutContext);
 
   function addNewWorkout() {
 
-    setWorkouts(prev => [...prev, { type: workoutType, distance: parseInt(distance), duration: parseInt(duration) }]);
-    setWorkoutType('Run');
-    setDistance(0);
-    setDuration(0);
+    handleErrors();
 
-
-    // setWorkout([{workoutType, distance, duration}]);
-
-    // console.log(workout)
-
-    // if (distance <= 0) {
-    //   console.log("poop")
-    // }
-    // console.log(workoutType + " " + distance + " " + duration)
-    // setDistance(0);
-    // setDuration(0);
-    // setWorkoutType('Run');
   }
 
   return (
@@ -69,4 +54,29 @@ export default function AddWorkout() {
       <Button color="teal" title="Add Workout" onPress={addNewWorkout}>Add Workout</Button>
     </View>
   );
+
+  function handleErrors() {
+    const hasInvalidValue = distance <= 0 || duration <= 0;
+
+    if (hasInvalidValue) {
+      Alert.alert(
+        hasInvalidValue ? 'Invalid Input' : 'Success',
+        hasInvalidValue ? (
+          distance <= 0 ? 'Please enter a distance greater than zero.' : 'Please enter a duration greater than zero.'
+        ) : 'Workout added successfully.',
+        [
+          {
+            text: 'OK'
+          },
+        ],
+        { cancelable: false }
+      );
+    } else {
+      setWorkouts(prev => [...prev, { type: workoutType, distance: parseInt(distance), duration: parseInt(duration) }]);
+      setWorkoutType('Run');
+      setDistance(0);
+      setDuration(0);
+    }
+  }
+
 };
