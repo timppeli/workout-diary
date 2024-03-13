@@ -8,13 +8,22 @@ export default function WorkoutHistory() {
 
   const { workouts } = useContext(WorkoutContext);
 
+  const runDistanceTotal = getTotalDistanceByType(workouts, 'Run');
+  const bikeDistanceTotal = getTotalDistanceByType(workouts, 'Bike');
+  const swimDistanceTotal = getTotalDistanceByType(workouts, 'Swim');
+
   return (
     <View style={Styles.container}>
-    <Text>Total stats for each sport</Text>
-    
-      <Text>List of all workouts</Text>
-      <FlatList 
-      data={workouts} renderItem={({item}) => <ListItem workout={item}/> }
+    <Text style={Styles.label}>Total stats for each sport</Text>
+      <View style={Styles.statsContainer}>
+        <Text style={Styles.statsItem}><MaterialCommunityIcons name={"run"} size={30} /> {runDistanceTotal} km</Text>
+        <Text style={Styles.statsItem}><MaterialCommunityIcons name={"bike"} size={30} /> {bikeDistanceTotal} km</Text>
+        <Text style={Styles.statsItem}><MaterialCommunityIcons name={"swim"} size={30} /> {swimDistanceTotal} km</Text>
+      </View>
+
+      <Text style={Styles.label}>List of all workouts</Text>
+      <FlatList
+        data={workouts} renderItem={({ item }) => <ListItem workout={item} />}
       />
     </View>
   );
@@ -31,5 +40,12 @@ export default function WorkoutHistory() {
         <MaterialCommunityIcons name={icon} size={40} />
       </View>
     );
+  }
+  
+  function getTotalDistanceByType(workouts, workoutType) {
+    return workouts.filter(w => w.type === workoutType)
+      .reduce((sum, w) => {
+        return sum + w.distance;
+      }, 0);
   }
 }

@@ -51,5 +51,17 @@ export default StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center"
+  },
+  statsContainer: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    marginBottom: 15,
+    marginTop: 15
+  },
+  statsItem: {
+    backgroundColor: "teal",
+    padding: 10,
+    borderRadius: 10,
+    color: "#fff"
   }
 });
