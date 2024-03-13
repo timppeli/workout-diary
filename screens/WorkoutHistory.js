@@ -14,7 +14,7 @@ export default function WorkoutHistory() {
 
   return (
     <View style={Styles.container}>
-    <Text style={Styles.label}>Total stats for each sport</Text>
+      <Text style={Styles.label}>Total stats for each sport</Text>
       <View style={Styles.statsContainer}>
         <Text style={Styles.statsItem}><MaterialCommunityIcons name={"run"} size={30} /> {runDistanceTotal} km</Text>
         <Text style={Styles.statsItem}><MaterialCommunityIcons name={"bike"} size={30} /> {bikeDistanceTotal} km</Text>
@@ -41,7 +41,7 @@ export default function WorkoutHistory() {
       </View>
     );
   }
-  
+
   function getTotalDistanceByType(workouts, workoutType) {
     return workouts.filter(w => w.type === workoutType)
       .reduce((sum, w) => {
