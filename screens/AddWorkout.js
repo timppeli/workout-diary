@@ -19,7 +19,7 @@ export default function AddWorkout() {
 
   function addNewWorkout() {
 
-    setWorkouts(prev => [...prev, { workoutType, distance, duration }]);
+    setWorkouts(prev => [...prev, { type: workoutType, distance, duration }]);
     setWorkoutType('Run');
     setDistance(0);
     setDuration(0);

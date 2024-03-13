@@ -44,7 +44,12 @@ export default StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-evenly"
   },
-  buttonstyle: {
-    backgroundColor: "red"
+  historylistItem: {
+    backgroundColor: "orange",
+    padding: 10,
+    margin: 20,
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center"
   }
 });
