@@ -63,5 +63,20 @@ export default StyleSheet.create({
     padding: 10,
     borderRadius: 10,
     color: "#fff"
+  },
+  dateSelector: {
+    padding: 15,
+    borderWidth: 1,
+    borderColor: "#666",
+    backgroundColor: "#fff"
+  },
+  settings: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    fontSize: 50
+  },
+  settingsText: {
+    fontSize: 50
   }
 });

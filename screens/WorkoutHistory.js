@@ -12,18 +12,27 @@ export default function WorkoutHistory() {
   const bikeDistanceTotal = getTotalDistanceByType(workouts, 'Bike');
   const swimDistanceTotal = getTotalDistanceByType(workouts, 'Swim');
 
+
+  const sortWorkoutsByDate = (workouts) => {
+    return workouts.sort((a, b) => {
+      const dateA = new Date(a.date.year, a.date.month - 1, a.date.day);
+      const dateB = new Date(b.date.year, b.date.month - 1, b.date.day);
+      return dateB - dateA;
+    });
+  };
+
   return (
     <View style={Styles.container}>
-      <Text style={Styles.label}>Total stats for each sport</Text>
+      <Text style={Styles.label}>Total distance for each sport</Text>
       <View style={Styles.statsContainer}>
         <Text style={Styles.statsItem}><MaterialCommunityIcons name={"run"} size={30} /> {runDistanceTotal} km</Text>
         <Text style={Styles.statsItem}><MaterialCommunityIcons name={"bike"} size={30} /> {bikeDistanceTotal} km</Text>
         <Text style={Styles.statsItem}><MaterialCommunityIcons name={"swim"} size={30} /> {swimDistanceTotal} km</Text>
       </View>
 
-      <Text style={Styles.label}>List of all workouts</Text>
+      <Text style={Styles.label}>All workouts (most recent first)</Text>
       <FlatList
-        data={workouts} renderItem={({ item }) => <ListItem workout={item} />}
+        data={sortWorkoutsByDate(workouts)} renderItem={({ item }) => <ListItem workout={item} />}
       />
     </View>
   );
@@ -34,10 +43,10 @@ export default function WorkoutHistory() {
 
     return (
       <View style={Styles.historylistItem}>
-        <Text style={Styles.itemText}>{workout.type}</Text>
+        <MaterialCommunityIcons name={icon} size={40} />
         <Text >{workout.distance + " km"} </Text>
         <Text >{workout.duration + " min"} </Text>
-        <MaterialCommunityIcons name={icon} size={40} />
+        <Text ><MaterialCommunityIcons name={"calendar-range"} size={16} /> {workout.date.day + "." + workout.date.month + "." + workout.date.year}</Text>
       </View>
     );
   }
